@@ -1,8 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { cartContext } from '../CartContextComponent';
 
 export default function ItemCount({ product }) {
   const [count, setCount] = useState(1);
+  const [removeButton, setRemoveButton] = useState(false);
   const { cart, addToCart } = useContext(cartContext);
 
   function sumar() {
@@ -19,6 +21,7 @@ export default function ItemCount({ product }) {
 
   function onAdd() {
     addToCart(product, count);
+    setRemoveButton(true);
   }
 
   useEffect(() => {
@@ -34,7 +37,15 @@ export default function ItemCount({ product }) {
       <span style={{ cursor: 'pointer' }} onClick={sumar}>
         +
       </span>
-      <button onClick={onAdd}>Agregar al carro</button>
+      {removeButton ? (
+        <>
+          <p>Producto agregado...</p>
+          <Link to="/">Seguir comprando...</Link>
+          <Link to="/checkout">Terminar Compra</Link>
+        </>
+      ) : (
+        <button onClick={onAdd}>Agregar al carro</button>
+      )}
     </div>
   );
 }
