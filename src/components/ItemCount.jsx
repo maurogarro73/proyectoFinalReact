@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { cartContext } from '../CartContextComponent';
 
 export default function ItemCount({ product }) {
   const [count, setCount] = useState(1);
+  const { cart, addToCart } = useContext(cartContext);
 
   function sumar() {
     if (count < product.stock) {
@@ -16,8 +18,12 @@ export default function ItemCount({ product }) {
   }
 
   function onAdd() {
-    alert('Quiero agregar ' + count + ' de este item: ' + product.name);
+    addToCart(product, count);
   }
+
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
 
   return (
     <div>

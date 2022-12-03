@@ -5,7 +5,6 @@ export default function ItemDetail({ product }) {
   return (
     <>
       <div>
-        <p>id: {product.id}</p>
         <h2>Nombre: {product.name}</h2>
         <img style={{ height: '500px' }} src={product.img} alt={product.name} />
         <p>tipo: {product.idCategory}</p>
