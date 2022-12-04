@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { cartContext } from '../CartContextComponent';
+import '../styles/ItemCount.css';
+import Button from 'react-bootstrap/Button';
 
 export default function ItemCount({ product }) {
   const [count, setCount] = useState(1);
@@ -29,22 +31,26 @@ export default function ItemCount({ product }) {
   }, [cart]);
 
   return (
-    <div>
-      <span style={{ cursor: 'pointer' }} onClick={restar}>
-        -
-      </span>
-      {count}
-      <span style={{ cursor: 'pointer' }} onClick={sumar}>
-        +
-      </span>
+    <div className="counter">
+      <button onClick={restar}>-</button>
+      <span>{count}</span>
+      <button onClick={sumar}>+</button>
       {removeButton ? (
         <>
           <p>Producto agregado...</p>
-          <Link to="/">Seguir comprando...</Link>
-          <Link to="/checkout">Terminar Compra</Link>
+          <Button variant="success" as={Link} to={'/'}>
+            Seguir comprando...
+          </Button>
+          <br />
+          <br />
+          <Button variant="success" as={Link} to={'/checkout'}>
+            Terminar Compra
+          </Button>
         </>
       ) : (
-        <button onClick={onAdd}>Agregar al carro</button>
+        <Button className="btnAdd" variant="success" onClick={onAdd}>
+          Agregar al carro
+        </Button>
       )}
     </div>
   );

@@ -1,0 +1,22 @@
+.item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.imagenProducto,
+.descripcion {
+  width: 50%;
+}
+
+.descripcion {
+  text-align: center;
+}
+
+.imgProducto {
+  width: 100%;
+  margin: auto;
+}

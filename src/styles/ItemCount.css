@@ -11,9 +11,5 @@
 }
 
 .btnAdd {
-  padding: 5px;
-  border-radius: 10px;
-  border-color: n;
-  margin-top: 5px;
-  background-color: rgb(153, 250, 89);
+  margin-left: 10px;
 }

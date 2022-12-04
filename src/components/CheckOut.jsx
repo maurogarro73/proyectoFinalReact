@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { cartContext } from '../CartContextComponent';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { Button, Container, Form } from 'react-bootstrap';
 
 export default function CheckOut() {
   const { totalToPay, cart, deleteAllFromCart } = useContext(cartContext);
@@ -30,17 +31,23 @@ export default function CheckOut() {
 
   return (
     <>
-      {orderId ? (
-        'Gracias por confiar en nosotros. Tu ID de compra es: ' + orderId
-      ) : (
-        <div>
-          <h2>Terminar Compra, ingrese sus datos</h2>
-          <input type="text" placeholder="Ingrese su nombre" onChange={(e) => setName(e.target.value)} />
-          <input type="tel" placeholder="Ingrese su telefono" onChange={(e) => setTel(e.target.value)} />
-          <input type="email" placeholder="Ingrese su email" onChange={(e) => setEmail(e.target.value)} />
-          <button onClick={validateForm}>Terminar Compra</button>
-        </div>
-      )}
+      <Container>
+        {orderId ? (
+          'Gracias por confiar en nosotros. Tu ID de compra es: ' + orderId
+        ) : (
+          <div>
+            <h2>Terminar Compra, ingrese sus datos</h2>
+            <Form.Group>
+              <Form.Control type="text" placeholder="Ingrese su nombre" onChange={(e) => setName(e.target.value)} required />
+              <Form.Control type="tel" placeholder="Ingrese su telefono" onChange={(e) => setTel(e.target.value)} required />
+              <Form.Control type="email" placeholder="Ingrese su email" onChange={(e) => setEmail(e.target.value)} required />
+            </Form.Group>
+            <Button variant="success" onClick={validateForm}>
+              Terminar Compra
+            </Button>
+          </div>
+        )}
+      </Container>
     </>
   );
 }
